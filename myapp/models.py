@@ -48,7 +48,7 @@ class InfoProduct(models.Model):
 # History модель
 class History(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    infoProducts = models.ManyToManyField(InfoProduct, related_name='history_products')
+    infoProducts = models.ManyToManyField(InfoProduct, help_text="Бараа",  related_name='history_products')
     infoCUBranch = models.ForeignKey(InfoCUBranch, on_delete=models.CASCADE)
     totalPrice = models.DecimalField(max_digits=15, decimal_places=2)
     description = models.TextField(blank=True, null=True)

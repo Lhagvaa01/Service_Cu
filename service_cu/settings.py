@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
 from pathlib import Path
+import os
 
 from django.core.wsgi import get_wsgi_application
+from os import getenv
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,27 +86,26 @@ WSGI_APPLICATION = 'service_cu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-WSGI_APPLICATION = 'service_cu.wsgi.application'
-application = get_wsgi_application()
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Service-Cu',
-        'USER': 'dotood',
-        'PASSWORD': 'kacc@9002Aa',
-        'HOST': '202.131.237.185',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+application = get_wsgi_application()
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'Service-Cu',
+#         'USER': 'dotood',
+#         'PASSWORD': 'kacc@9002Aa',
+#         'HOST': '202.131.237.185',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
