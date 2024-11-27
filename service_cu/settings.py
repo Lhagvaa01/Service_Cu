@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from django.core.wsgi import get_wsgi_application
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,19 +27,26 @@ SECRET_KEY = 'django-insecure-2^ntm-7*d)yeinlz5+^vj0cqvvu_@lf%i)doa$zv&^1u+!@6qh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.11.104', '*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '202.131.237.185', '*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'myapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',
+    'rest_framework',
+    'corsheaders',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://202.131.237.185"
 ]
 
 MIDDLEWARE = [
@@ -48,8 +57,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
-
 ROOT_URLCONF = 'service_cu.urls'
 
 TEMPLATES = [
@@ -74,10 +84,25 @@ WSGI_APPLICATION = 'service_cu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+WSGI_APPLICATION = 'service_cu.wsgi.application'
+application = get_wsgi_application()
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Service-Cu',
+        'USER': 'dotood',
+        'PASSWORD': 'kacc@9002Aa',
+        'HOST': '202.131.237.185',
+        'PORT': '3306',
     }
 }
 
